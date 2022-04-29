@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import FoodCard from '../components/FoodCard';
 import { fetchFoods } from '../services/foodapi';
 
 export default function FoodList() {
@@ -17,15 +18,13 @@ export default function FoodList() {
   }, []);
   return (
     <>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="food-list">
-          {foods.map((food) => (
-            <p>Food goes here</p>
-          ))}
-        </div>
-      )}
+      {
+        loading 
+          ? <p>Loading...</p>
+          : (<div className="food-list">
+              {foods.map((food) => (<FoodCard key={food.fdcId} food={food} />))}
+          </div>)
+      }
     </>
   );
 }
